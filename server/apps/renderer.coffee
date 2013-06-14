@@ -39,4 +39,12 @@ routes = (app) ->
     else
       res.redirect 422, '/index'
 
+  app.get '/tracks/:hash', (req, res) ->
+    TrackProcessor.findOne {input_hash: req.params.hash}, (err, track) ->
+      if err
+        res.send "Not found", 404
+      else
+        track.title = 'The Monotonizer'
+        res.render 'track', track
+
 module.exports = routes

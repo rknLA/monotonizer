@@ -9,4 +9,15 @@ html
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
     script(src='/bootstrap/js/bootstrap.min.js')
   body
-    block content
+    div.container-narrow
+      div.masthead
+        ul.nav.nav-pills.pull-right
+          li
+            a(href='/') Home
+          li
+            a(href='/history') History
+          li
+            a(href='/about') About
+        h3.muted= title
+      hr
+      block content

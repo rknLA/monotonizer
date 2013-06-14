@@ -1,25 +1,13 @@
 extends layout
 
 block content
-  div.container-narrow
-    div.masthead
-      ul.nav.nav-pills.pull-right
-        li
-          a(href='/') Home
-        li
-          a(href='/history') History
-        li
-          a(href='/about') About
-      h3.muted= title
+  div.jumbotron
+    h1 Monotonize your music!
+    p.lead Monotonizer pitch shifts every note up or down to the tonic of the entire song.  The result is occasionally absurd, and often hilarious.
+    p Upload a song to try it out!
 
-    hr
-    div.jumbotron
-      h1 Monotonize your music!
-      p.lead Monotonizer pitch shifts every note up or down to the tonic of the entire song.  The result is occasionally absurd, and often hilarious.
-      p Upload a song to try it out!
-
-    div.row-fluid.marketing
-      div.span6
-        form(action='/track', method='post', enctype='multipart/form-data')
-          input(type='file', name='sourceTrack')
-          input(type='text', name='description')
+  div.row-fluid.marketing
+    div.span6
+      form(action='/track', method='post', enctype='multipart/form-data')
+        input(type='file', name='sourceTrack')
+        input(type='text', name='description')
