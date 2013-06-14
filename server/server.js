@@ -5,12 +5,27 @@
 
 var express = require('express')
   , http = require('http')
+  , fs = require('fs')
   , path = require('path')
   , mongoose = require('mongoose')
   , keys = require('./keys');
 
 require('coffee-script');
 
+/* create uploads folder if it doesn't exist */
+var upload_path = path.join(__dirname, 'uploads');
+fs.exists(upload_path, function(exists) {
+  if (!exists) {
+    fs.mkdir(upload_path, function(err) {
+      if (err) {
+        console.log("Error creating uploads folder.");
+        throw(err);
+      }
+    });
+  }
+});
+
+/* resume doing the app stuff */
 var app = module.exports = express();
 
 app.configure(function(){
