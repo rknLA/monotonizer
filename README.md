@@ -14,7 +14,7 @@ Pass it an input audio file, and an output destination.
 
 Listen to the output when it's done.
 
-Dependencies
+Script Dependencies
 ------------
 
 * The [Echonest Remix API](http://echonest.github.io/remix/) (`pip install remix`)
