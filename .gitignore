@@ -3,3 +3,4 @@ sources/
 results/
 node_modules/
 npm-debug.log
+server/uploads
