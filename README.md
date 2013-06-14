@@ -6,7 +6,7 @@ Turn any recording into ~~pure~~ ~~un~~adultered monotony.
 Usage
 -----
 
-Run `scripts/monotonizer.py` on the command line.
+Run `./scripts/monotonize.py` on the command line.
 
 Pass it an input audio file, and an output destination.
 
@@ -16,6 +16,7 @@ Dependencies
 ------------
 
 * [Echonest Remix API](http://echonest.github.io/remix/) (`pip install remix`)
+* `ECHO_NEST_API_KEY` must be in your env, or added to `monotonize.py`
 * [RubberBand](http://www.breakfastquay.com/rubberband/) CLI utility somewhere in your path.
 
 About
