@@ -1,6 +1,6 @@
 Monotonizer
 ===========
 
-Turn any recording into (im)pure -un-adultered monotony.
+Turn any recording into ~~pure~~ ~~un~~adultered monotony.
 
 
