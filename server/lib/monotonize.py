@@ -79,6 +79,8 @@ class Monoizer():
     # clean up the files 
     # os.removedirs(tmp_root) # assuming no collisions, or problems if we nuke something else in there
 
+    sys.stdout.flush()
+
     return new_data 
 
 

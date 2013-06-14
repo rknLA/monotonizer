@@ -4,3 +4,9 @@ block content
   div.row-fluid.marketing
     div.span6
       h4 A Monotonic History
+  div.row-fluid
+    ul
+      - for (var i = 0; i < tracks.length; ++i) {
+        li
+          a(href=tracks[i].stream_url)= tracks[i].input_file_name
+      - }

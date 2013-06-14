@@ -35,7 +35,8 @@ routes = (app) ->
                       console.log "Error creating track processor", err
                       res.redirect 500, '/index'
                     else
-                      res.redirect 201, '/tracks/' + track.input_hash
+                      track.process(app.get('root'))
+                      res.redirect '/tracks/' + track.input_hash
     else
       res.redirect 422, '/index'
 
@@ -44,7 +45,6 @@ routes = (app) ->
       if err
         res.send "Not found", 404
       else
-        track.title = 'The Monotonizer'
         res.render 'track', track
 
 module.exports = routes
