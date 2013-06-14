@@ -1,12 +1,37 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "sc-server",
+  "description": "Shared Cinema Server",
+  "version": "0.0.2-56",
   "private": true,
+  "author": "Shared Cinema <info@sharedcinema.com>",
+  "contributors": [
+    "Chris Abrams <mail@chrisabrams.com>",
+    "R. Kevin Nelson <kevin@rkn.la>"
+  ],
   "scripts": {
-    "start": "node app"
+    "start": "node server.js",
+    "test": "cake test"
   },
   "dependencies": {
-    "express": "3.0.3",
-    "jade": "*"
+    "express": "3.0.0rc4",
+    "jade": "*",
+    "less-middleware": "*",
+    "coffee-script": "~1.3.3",
+    "mongoose": "~3.3.1",
+    "restler": "~2.0.1",
+    "async": "~0.1.22"
+  },
+  "devDependencies": {
+    "mocha": "~1.6.0",
+    "chai": "~1.3.0",
+    "request": "~2.11.4",
+    "step": "0.0.5"
+  },
+  "subdomain": "rknla.shared_cinema_node",
+  "domains": [
+    "m.sharedcinema.com"
+  ],
+  "engines": {
+    "node": "0.8.x"
   }
 }

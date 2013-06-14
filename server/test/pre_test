@@ -1,0 +1,2 @@
+#!/bin/bash
+mongo cinema_test --eval 'db.users.remove(); db.videos.remove();'
