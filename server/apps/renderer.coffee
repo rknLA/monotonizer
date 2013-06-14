@@ -24,9 +24,19 @@ routes = (app) ->
                   console.log "Error saving file: ", err
                   res.redirect 500, '/index'
                 else
-                  res.redirect 201, '/tracks/'
+                  new_track = TrackProcessor.create {
+                    status: 'uploaded'
+                    input_file_path: fullPath
+                    input_file_name: track.name
+                    input_hash: hash
+                    user_description: req.body.description || null
+                  }, (err, track) ->
+                    if err
+                      console.log "Error creating track processor", err
+                      res.redirect 500, '/index'
+                    else
+                      res.redirect 201, '/tracks/' + track.input_hash
     else
       res.redirect 422, '/index'
-      
 
 module.exports = routes

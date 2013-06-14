@@ -10,7 +10,7 @@ TrackProcessorSchema = new mongoose.Schema
   input_file_name:
     type: String
     required: true
-  input_checksum: String
+  input_hash: String
   user_description: String
   output_file_name: String
   output_file_path: String
