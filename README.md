@@ -15,9 +15,9 @@ Listen to the output when it's done.
 Dependencies
 ------------
 
-* [Echonest Remix API](http://echonest.github.io/remix/) (`pip install remix`)
+* The [Echonest Remix API](http://echonest.github.io/remix/) (`pip install remix`)
 * `ECHO_NEST_API_KEY` must be in your env, or added to `monotonize.py`
-* [RubberBand](http://www.breakfastquay.com/rubberband/) CLI utility somewhere in your path.
+* The [RubberBand](http://www.breakfastquay.com/rubberband/) CLI utility somewhere in your path. (`which rubberband` should give you something)
 
 About
 -----
