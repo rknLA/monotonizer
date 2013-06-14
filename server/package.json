@@ -1,7 +1,7 @@
 {
   "name": "monotonizer",
   "description": "The Monotonizer",
-  "version": "0.0.1",
+  "version": "0.1",
   "private": true,
   "author": "R. Kevin Nelson <kevin@rkn.la>",
   "scripts": {
@@ -25,6 +25,6 @@
   },
   "subdomain": "rknla.monotonizer",
   "engines": {
-    "node": "0.10.x"
+    "node": "0.8.x"
   }
 }
