@@ -6,7 +6,9 @@ Turn any recording into ~~pure~~ ~~un~~adultered monotony.
 Usage
 -----
 
-Run `./scripts/monotonize.py` on the command line.
+This repo contains the Monotonizer server as well as the Monotonizer script.
+
+To run the script locally, run `./lib/monotonize.py` on the command line.
 
 Pass it an input audio file, and an output destination.
 
