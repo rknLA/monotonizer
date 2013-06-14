@@ -23,6 +23,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
+  app.set('root', __dirname);
 });
 
 app.configure('development', function(){
@@ -39,6 +40,7 @@ app.configure('production', function() {
 });
 
 require('./apps/static')(app);
+require('./apps/renderer')(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

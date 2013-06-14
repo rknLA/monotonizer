@@ -17,3 +17,9 @@ block content
       h1 Monotonize your music!
       p.lead Monotonizer pitch shifts every note up or down to the tonic of the entire song.  The result is occasionally absurd, and often hilarious.
       p Upload a song to try it out!
+
+    div.row-fluid.marketing
+      div.span6
+        form(action='/track', method='post', enctype='multipart/form-data')
+          input(type='file', name='sourceTrack')
+          input(type='text', name='description')
