@@ -21,8 +21,6 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
-  app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -41,13 +39,6 @@ app.configure('production', function() {
 });
 
 require('./apps/static')(app);
-require('./apps/videos/submission')(app);
-require('./apps/videos/upvote')(app);
-require('./apps/videos/queue')(app);
-require('./apps/videos/presenter')(app);
-require('./apps/users/create')(app);
-require('./apps/search/video_search')(app);
-
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
