@@ -20,6 +20,8 @@ Script Dependencies
 * The [Echonest Remix API](http://echonest.github.io/remix/) (`pip install remix`)
 * `ECHO_NEST_API_KEY` must be in your env, or added to `monotonize.py`
 * The [RubberBand](http://www.breakfastquay.com/rubberband/) CLI utility somewhere in your path. (`which rubberband` should give you something)
+* The [Numpy](http://www.numpy.org/) Python package (`pip install numpy`)
+* [FFmpeg](http://www.ffmpeg.org/) With homebrew installed run `brew install ffmpeg` and then `sudo ln -s 'which ffmpeg' /usr/local/bin/en-ffmpeg` in order to symlink the executable into the correct location.
 
 About
 -----
