@@ -22,6 +22,7 @@ Script Dependencies
 * The [RubberBand](http://www.breakfastquay.com/rubberband/) CLI utility somewhere in your path. (`which rubberband` should give you something)
 * The [Numpy](http://www.numpy.org/) Python package (`pip install numpy`)
 * [FFmpeg](http://www.ffmpeg.org/) With homebrew installed run `brew install ffmpeg` and then `sudo ln -s 'which ffmpeg' /usr/local/bin/en-ffmpeg`.
+
 About
 -----
 
