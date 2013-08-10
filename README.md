@@ -21,7 +21,14 @@ Script Dependencies
 * `ECHO_NEST_API_KEY` must be in your env, or added to `monotonize.py`
 * The [RubberBand](http://www.breakfastquay.com/rubberband/) CLI utility somewhere in your path. (`which rubberband` should give you something)
 * The [Numpy](http://www.numpy.org/) Python package (`pip install numpy`)
-* [FFmpeg](http://www.ffmpeg.org/) 
+* [FFmpeg](http://www.ffmpeg.org/)
+
+Notes
+-----
+
+The `monotonizer.py` script was originally written for mac, whose MD5 command is `md5`.  On Linux, the command is `md5sum`.
+Pull requests to make this properly cross platform are welcome, but in the meantime, you can get by with symlinking.
+
 
 About
 -----
