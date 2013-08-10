@@ -13,7 +13,12 @@ def md5(path):
   """
   Brutally non-portable md5 computation
   """
-  p = subprocess.Popen('md5 -q %s' % path, stdout=subprocess.PIPE, shell=True)
+  # mac OS:
+#  p = subprocess.Popen('md5 -q %s' % path, stdout=subprocess.PIPE, shell=True)
+
+  # linux:
+  p = subprocess.Popen('md5sum --quiet %s' % path, stdout=subprocess.PIPE, shell=True)
+
   (md5sum, err) = p.communicate()
   if err:
     raise Exception("MD5 checksum error")
