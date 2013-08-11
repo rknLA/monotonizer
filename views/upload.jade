@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div.jumbotron
+    h1 Welcome, #{username}!
+    p Upload a song and we'll post the result to your SoundCloud account for posterity.
+
+  div.row-fluid.marketing
+    div.offset3.span6.upload-view
+      form(action='/track', method='post', enctype='multipart/form-data')
+        input(type='file', name='sourceTrack')
+        input(type='text', name='title')
+        input(type='text', name='description')

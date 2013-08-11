@@ -6,6 +6,12 @@ var routes = function(app) {
     res.render('index');
   });
 
+  app.get('/upload', function(req, res) {
+    res.render('upload', {
+      username: req.session.username
+    });
+  });
+
   app.get('/about', function(req, res) {
     res.render('about');
   });

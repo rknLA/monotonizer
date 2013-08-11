@@ -15,10 +15,7 @@ module.exports = (app) ->
     soundcloud.exchangeToken code, (token) ->
       soundcloud.request 'GET', '/me', token, (result) ->
         req.session.user = result.id
-        userDetails = {
-          id: result.id
-          username: result.username
-          token: token
-        }
-        res.redirect '/'
+        req.session.username = result.username
+        req.session.token = token
+        res.redirect '/upload'
         res.end()
