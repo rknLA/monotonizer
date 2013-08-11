@@ -78,7 +78,7 @@ TrackProcessorSchema.methods.uploadToSoundcloud = () ->
     file_size = info.size
     console.log "file is " + file_size + " bytes"
     soundcloud_title = '[Monotonizer] ' + self.title
-    soundcloud.postTrack file_path, self.title, self.description, self.soundcloud_token, (response) ->
+    soundcloud.postTrack file_path, soundcloud_title, self.description, self.soundcloud_token, (response) ->
       console.log response
       soundcloud.pollTrackStatus response.id, self.soundcloud_token, (err, track) ->
         console.log "soundcloud track:", track
