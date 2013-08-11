@@ -1,6 +1,6 @@
 soundcloud = require '../lib/soundcloud'
 
-routes = (app) ->
+module.exports = (app) ->
   app.post '/login', (req, res) ->
     res.redirect soundcloud.authorizeUrl()
 
