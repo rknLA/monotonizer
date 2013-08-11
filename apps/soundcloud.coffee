@@ -4,7 +4,7 @@ module.exports = (app) ->
   app.get '/login', (req, res) ->
     res.redirect soundcloud.authorizeUrl()
 
-  app.post '/soundcloud_callback', (req, res) ->
+  app.get '/soundcloud_callback', (req, res) ->
     code = req.param 'code', null
 
     if not code
