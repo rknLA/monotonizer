@@ -6,7 +6,7 @@ block content
     p Upload a song and we'll post the result to your SoundCloud account for posterity.
 
   div.row-fluid.marketing
-    div.offset3.span6.upload-view
+    div.offset3.span6
       form(action='/track', method='post', enctype='multipart/form-data')
         input(type='file', name='sourceTrack')
         input(type='text', name='title')
