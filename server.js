@@ -28,6 +28,9 @@ fs.exists(upload_path, function(exists) {
 /* resume doing the app stuff */
 var app = module.exports = express();
 
+var MemoryStore = express.session.MemoryStore;
+var sessionStore = new MemoryStore();
+
 app.configure(function(){
   app.set('port', process.env.PORT || 4400);
   app.set('views', __dirname + '/views');
@@ -35,6 +38,11 @@ app.configure(function(){
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
+  app.use(express.cookieParser());
+  app.use(express.session({
+    secret: keys.cookieSecret,
+    store: sessionStore
+  }));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
