@@ -62,7 +62,7 @@ exports.exchangeToken = (code, callback) ->
     client_id: keys.soundcloud.client_id
     client_secret: keys.soundcloud.client_secret
     code: code
-  params += "&redirect_uri=#{process.env.SOUNDCLOUD_REDIRECT_URL}"
+  params += "&redirect_uri=#{keys.soundcloud.redirect_url}"
 
   responseHandler = (response) ->
     callback response.access_token
