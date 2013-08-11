@@ -29,7 +29,7 @@ fs.exists(upload_path, function(exists) {
 var app = module.exports = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 4400);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());

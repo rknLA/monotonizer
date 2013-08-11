@@ -7,7 +7,7 @@ from optparse import OptionParser
 
 from echonest.remix.audio import AudioData, AudioSegment, LocalAudioFile
 from echonest.remix.action import render
-from pyechonest import config
+from pyechonest import config as echo_config
 
 def md5(path):
   """
@@ -17,12 +17,12 @@ def md5(path):
 #  p = subprocess.Popen('md5 -q %s' % path, stdout=subprocess.PIPE, shell=True)
 
   # linux:
-  p = subprocess.Popen('md5sum --quiet %s' % path, stdout=subprocess.PIPE, shell=True)
+  p = subprocess.Popen('md5sum %s' % path, stdout=subprocess.PIPE, shell=True)
 
   (md5sum, err) = p.communicate()
   if err:
     raise Exception("MD5 checksum error")
-  return md5sum.strip()
+  return md5sum.split(' ')[0]
 
   
 class Monoizer():

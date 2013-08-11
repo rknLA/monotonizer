@@ -26,7 +26,7 @@ TrackProcessorSchema.methods.process = (app_root) ->
     else
       render_root = path.join(app_root, 'public', 'monotonous')
       in_file_path = track.input_file_path
-      out_file_name = track.input_hash + '.mp3'
+      out_file_name = track.input_hash + '.flac'
       out_file_path = path.join(render_root, out_file_name)
       console.log 'writing to ' + out_file_path
       mono = childProcess.spawn './lib/monotonize.py', [
@@ -36,10 +36,11 @@ TrackProcessorSchema.methods.process = (app_root) ->
         cwd: app_root
 
       mono.on 'error', (e) ->
+        console.log 'child process failed with error: '
         console.log e.stack
 
       mono.on 'close', (code) ->
-        console.log 'child process closed with code' + code
+        console.log 'child process closed with code ' + code
         if code == 0
           # succeeded
           track.status = 'completed'
