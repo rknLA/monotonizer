@@ -51,15 +51,15 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-  app.set('db', mongoose.connect('mongodb://localhost/cinema_dev'));
+  app.set('db', mongoose.connect('mongodb://localhost/monotonizer_dev'));
 });
 
 app.configure('test', function() {
-  app.set('db', mongoose.connect('mongodb://localhost/cinema_test'));
+  app.set('db', mongoose.connect('mongodb://localhost/monotonizer_test'));
 });
 
 app.configure('production', function() {
-  app.set('db', mongoose.connect(keys.mongoUrl));
+  app.set('db', mongoose.connect('mongodb://localhost/monotonizer_prod'));
 });
 
 require('./apps/static')(app);
