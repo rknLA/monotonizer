@@ -15,10 +15,12 @@ TrackProcessorSchema = new mongoose.Schema
     type: String
     required: true
   input_hash: String
-  user_description: String
+  description: String
+  title: String
   output_file_name: String
   output_file_path: String
   soundcloud_token: String
+  soundcloud_url: String
   stream_url: String
 
 TrackProcessorSchema.methods.process = (app_root) ->
@@ -75,14 +77,17 @@ TrackProcessorSchema.methods.uploadToSoundcloud = () ->
       return
     file_size = info.size
     console.log "file is " + file_size + " bytes"
-    soundcloud.postTrack file_path, self.user_description, "public", self.soundcloud_token, (response) ->
+    soundcloud_title = '[Monotonizer] ' + self.title
+    soundcloud.postTrack file_path, self.title, self.description, self.soundcloud_token, (response) ->
       console.log response
       soundcloud.pollTrackStatus response.id, self.soundcloud_token, (err, track) ->
+        console.log "soundcloud track:", track
         if err
           self.status = 'soundcloud error'
           self.save()
         else
           self.status = 'posted'
+          self.soundcloud_url = response.permalink_url
           self.save()
 
 

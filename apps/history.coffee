@@ -2,7 +2,7 @@ TrackProcessor = require '../models/track_processor'
 
 routes = (app) ->
   app.get '/history', (req, res) ->
-    TrackProcessor.find {status: 'completed'}, (err, tracks) ->
+    TrackProcessor.find {status: 'posted'}, (err, tracks) ->
       if (err)
         res.render 'error', err
       else

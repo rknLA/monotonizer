@@ -9,6 +9,6 @@ block content
     div.offset3.span6
       form(action='/track', method='post', enctype='multipart/form-data')
         input(type='file', name='sourceTrack')
-        input(type='text', name='title')
-        input(type='text', name='description')
+        input(type='text', name='title', placeholder='Title')
+        input(type='text', name='description', placeholder='Description')
         input(type='submit', name='submit')

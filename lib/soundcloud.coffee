@@ -78,10 +78,11 @@ exports.exchangeToken = (code, callback) ->
     , params, responseHandler
 
 # Post track
-exports.postTrack = (file, title, sharing, accessToken, callback) ->
+exports.postTrack = (file, title, description, accessToken, callback) ->
   params =
     'track[title]': title
-    'track[sharing]': sharing
+    'track[description]': description
+    'track[sharing]': "public"
     'oauth_token': accessToken
 
   stat = fs.statSync file

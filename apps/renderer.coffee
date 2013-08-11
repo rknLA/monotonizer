@@ -31,14 +31,15 @@ routes = (app) ->
                     input_file_name: sanitized_name
                     input_hash: hash
                     soundcloud_token: req.session.token
-                    user_description: req.body.description || null
+                    title: req.body.title || null
+                    description: req.body.description || null
                   }, (err, track) ->
                     if err
                       console.log "Error creating track processor", err
                       res.redirect 500, 'index'
                     else
                       track.process(app.get('root'))
-                      res.redirect 'tracks/' + track.input_hash
+                      res.redirect 'http://monotony.rkn.la/tracks/' + track.input_hash
     else
       res.redirect 422, 'index'
 
