@@ -16,29 +16,30 @@ routes = (app) ->
           fs.mkdir newPath, (err) ->
             if err
               console.log "error creating directory", err
-              res.redirect 500, '/index'
+              res.redirect 500, 'index'
             else
-              fullPath = path.join(newPath, track.name)
+              sanitized_name = track.name.replace(/\ /g, '_')
+              fullPath = path.join(newPath, sanitized_name)
               fs.writeFile fullPath, data, (err) ->
                 if err
                   console.log "Error saving file: ", err
-                  res.redirect 500, '/index'
+                  res.redirect 500, 'index'
                 else
                   new_track = TrackProcessor.create {
                     status: 'uploaded'
                     input_file_path: fullPath
-                    input_file_name: track.name
+                    input_file_name: sanitized_name
                     input_hash: hash
                     user_description: req.body.description || null
                   }, (err, track) ->
                     if err
                       console.log "Error creating track processor", err
-                      res.redirect 500, '/index'
+                      res.redirect 500, 'index'
                     else
                       track.process(app.get('root'))
-                      res.redirect '/tracks/' + track.input_hash
+                      res.redirect 'tracks/' + track.input_hash
     else
-      res.redirect 422, '/index'
+      res.redirect 422, 'index'
 
   app.get '/tracks/:hash', (req, res) ->
     TrackProcessor.findOne {input_hash: req.params.hash}, (err, track) ->
