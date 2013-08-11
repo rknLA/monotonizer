@@ -65,6 +65,7 @@ app.configure('production', function() {
 require('./apps/static')(app);
 require('./apps/renderer')(app);
 require('./apps/history')(app);
+require('./apps/soundcloud')(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
