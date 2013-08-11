@@ -40,7 +40,7 @@ routes = (app) ->
                       res.redirect 500, 'index'
                     else
                       track.process(app.get('root'))
-                      res.redirect 'http://monotony.rkn.la/tracks/' + track.input_hash
+                      res.redirect 'tracks/' + track.input_hash
     else
       res.redirect 422, 'index'
 
