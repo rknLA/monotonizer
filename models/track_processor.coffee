@@ -75,7 +75,7 @@ TrackProcessorSchema.methods.uploadToSoundcloud = () ->
       return
     file_size = info.size
     console.log "file is " + file_size + " bytes"
-    soundcloud.postTrack file_path, self.description, "public" self.soundcloud_token, (response) ->
+    soundcloud.postTrack file_path, self.description, "public", self.soundcloud_token, (response) ->
       console.log response
       soundcloud.pollTrackStatus response.id, self.soundcloud_token, (err, track) ->
         if err
