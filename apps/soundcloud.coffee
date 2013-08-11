@@ -17,5 +17,4 @@ module.exports = (app) ->
         req.session.user = result.id
         req.session.username = result.username
         req.session.token = token
-        res.redirect '/upload'
-        res.end()
+        res.redirect 'http://monotony.rkn.la/upload'
