@@ -4,10 +4,19 @@ block content
   div.jumbotron
     h1 Monotonize your music!
     p.lead Monotonizer pitch shifts every note up or down to the tonic of the entire song.  The result is occasionally absurd, and often hilarious.
-    p Upload a song to try it out!
+    p Upload a song and we'll post the result to your SoundCloud account for posterity.
 
   div.row-fluid.marketing
-    div.span6
+    div.offset3.span6.connect-view
+      p.center Connect to SoundCloud to get started
+      p.center
+        img(src='http://connect.soundcloud.com/2/btn-connect-l.png', alt='Connect to soundcloud', class='soundcloud-connect')
+
+    div.offset3.span6.upload-view
       form(action='/track', method='post', enctype='multipart/form-data')
         input(type='file', name='sourceTrack')
         input(type='text', name='description')
+        input(type='hidden', name='scToken')
+
+  script(src='http://connect.soundcloud.com/sdk.js')
+  script(src='js/connect_soundcloud.js')

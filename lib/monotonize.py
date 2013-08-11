@@ -98,9 +98,13 @@ def main():
     parser.print_help()
     return -1
 
+  print 'monoize'
   monoizer = Monoizer(args[0])
+  print 'about to analyze'
   monoizer.analyze()
+  print 'about to process'
   monoizer.process()
+  print 'about to save'
   monoizer.save(args[1])
 
 

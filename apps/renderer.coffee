@@ -4,6 +4,8 @@ path = require 'path'
 
 routes = (app) ->
   app.post '/track', (req, res) ->
+    if !req.body.scToken
+      res.redirect 422, 'index'
     if req.files && req.files.sourceTrack
       # we have a file
       # check it's type
@@ -30,6 +32,7 @@ routes = (app) ->
                     input_file_path: fullPath
                     input_file_name: sanitized_name
                     input_hash: hash
+                    soundcloud_token: req.body.scToken
                     user_description: req.body.description || null
                   }, (err, track) ->
                     if err

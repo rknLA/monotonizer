@@ -1,6 +1,8 @@
 mongoose = require 'mongoose'
 childProcess = require 'child_process'
 path = require 'path'
+rest = require 'restler'
+fs = require 'fs'
 
 TrackProcessorSchema = new mongoose.Schema
   status:
@@ -16,6 +18,7 @@ TrackProcessorSchema = new mongoose.Schema
   user_description: String
   output_file_name: String
   output_file_path: String
+  soundcloud_token: String
   stream_url: String
 
 TrackProcessorSchema.methods.process = (app_root) ->
@@ -26,7 +29,7 @@ TrackProcessorSchema.methods.process = (app_root) ->
     else
       render_root = path.join(app_root, 'public', 'monotonous')
       in_file_path = track.input_file_path
-      out_file_name = track.input_hash + '.flac'
+      out_file_name = track.input_hash + '.wav'
       out_file_path = path.join(render_root, out_file_name)
       console.log 'writing to ' + out_file_path
       mono = childProcess.spawn './lib/monotonize.py', [
@@ -39,15 +42,52 @@ TrackProcessorSchema.methods.process = (app_root) ->
         console.log 'child process failed with error: '
         console.log e.stack
 
+      dotCounter = 0
+      mono.stderr.on 'data', (d) ->
+        ++dotCounter
+        if dotCounter > 100
+          dotCounter = 0
+          process.stdout.write('.')
+      mono.stdout.on 'data', (d) ->
+        console.log ''+d
+
       mono.on 'close', (code) ->
         console.log 'child process closed with code ' + code
         if code == 0
           # succeeded
-          track.status = 'completed'
+          track.status = 'processed'
           track.output_file_name = out_file_name
           track.output_file_path = out_file_path
           track.stream_url = path.join('/', 'monotonous', out_file_name)
           track.save()
+          track.uploadToSoundcloud()
+
+TrackProcessorSchema.methods.uploadToSoundcloud = () ->
+  console.log 'uploading to soundcloud'
+  file_path = this.output_file_path
+  console.log 'file path: ' + file_path
+  if this.status != 'processed' || !this.soundcloud_token
+    return
+  fs.stat this.output_file_path, (err, info) ->
+    if err
+      console.log "Error stating file to upload"
+      return
+    file_size = info.size
+    console.log "file is " + file_size + " bytes"
+    rest.post('https://api.soundcloud.com/tracks', {
+      multipart: true
+      data:
+        'track[title]': this.description
+        'track[asset_data]': rest.file(file_path,
+                                      null,
+                                      file_size,
+                                      null,
+                                      'audio/wav')
+    }).on 'complete', (data) ->
+      console.log("data returned from soundcloud:", data)
+      this.status = 'uploaded'
+      this.save()
+
 
 TrackProcessor = mongoose.model('TrackProcessor', TrackProcessorSchema)
 
