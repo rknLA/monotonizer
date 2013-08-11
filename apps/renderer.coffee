@@ -12,6 +12,7 @@ routes = (app) ->
         # it's an audio file!
         fs.readFile track.path, (err, data) ->
           hash = track.path.split('/').slice(-1)[0] # last part of the path
+          console.log("uploaded track hash: " + hash);
           newPath = path.join(app.get('root'), 'uploads', hash)
           fs.mkdir newPath, (err) ->
             if err
