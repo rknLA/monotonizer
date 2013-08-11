@@ -32,7 +32,7 @@ routes = (app) ->
                     input_file_path: fullPath
                     input_file_name: sanitized_name
                     input_hash: hash
-                    soundcloud_token: req.body.scToken
+                    soundcloud_token: req.session.token
                     user_description: req.body.description || null
                   }, (err, track) ->
                     if err

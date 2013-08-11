@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 childProcess = require 'child_process'
 path = require 'path'
-rest = require 'restler'
+soundcloud = require '../lib/soundcloud'
 fs = require 'fs'
 
 TrackProcessorSchema = new mongoose.Schema
@@ -63,6 +63,7 @@ TrackProcessorSchema.methods.process = (app_root) ->
           track.uploadToSoundcloud()
 
 TrackProcessorSchema.methods.uploadToSoundcloud = () ->
+  self = this
   console.log 'uploading to soundcloud'
   file_path = this.output_file_path
   console.log 'file path: ' + file_path
@@ -74,19 +75,15 @@ TrackProcessorSchema.methods.uploadToSoundcloud = () ->
       return
     file_size = info.size
     console.log "file is " + file_size + " bytes"
-    rest.post('https://api.soundcloud.com/tracks', {
-      multipart: true
-      data:
-        'track[title]': this.description
-        'track[asset_data]': rest.file(file_path,
-                                      null,
-                                      file_size,
-                                      null,
-                                      'audio/wav')
-    }).on 'complete', (data) ->
-      console.log("data returned from soundcloud:", data)
-      this.status = 'uploaded'
-      this.save()
+    soundcloud.postTrack file_path, self.description, "public" self.soundcloud_token, (response) ->
+      console.log response
+      soundcloud.pollTrackStatus response.id, self.soundcloud_token, (err, track) ->
+        if err
+          self.status = 'soundcloud error'
+          self.save()
+        else
+          self.status = 'posted'
+          self.save()
 
 
 TrackProcessor = mongoose.model('TrackProcessor', TrackProcessorSchema)
