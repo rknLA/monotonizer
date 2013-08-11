@@ -10,13 +10,5 @@ block content
     div.offset3.span6.connect-view
       p.center Connect to SoundCloud to get started
       p.center
-        img(src='http://connect.soundcloud.com/2/btn-connect-l.png', alt='Connect to soundcloud', class='soundcloud-connect')
-
-    div.offset3.span6.upload-view
-      form(action='/track', method='post', enctype='multipart/form-data')
-        input(type='file', name='sourceTrack')
-        input(type='text', name='description')
-        input(type='hidden', name='scToken')
-
-  script(src='http://connect.soundcloud.com/sdk.js')
-  script(src='js/connect_soundcloud.js')
+        a(href='/login', title='Connect to SoundCloud')
+          img(src='http://connect.soundcloud.com/2/btn-connect-l.png', alt='Connect to soundcloud', class='soundcloud-connect')
