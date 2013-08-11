@@ -1,7 +1,7 @@
 soundcloud = require '../lib/soundcloud'
 
 module.exports = (app) ->
-  app.post '/login', (req, res) ->
+  app.get '/login', (req, res) ->
     res.redirect soundcloud.authorizeUrl()
 
   app.post '/soundcloud_callback', (req, res) ->
